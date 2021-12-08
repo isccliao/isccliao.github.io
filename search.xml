@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>CentOS 7 基礎安裝步驟說明</title>
+    <url>/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/</url>
+    <content><![CDATA[<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/article_logo.jpg" class="">
+
+<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>安裝 Centos。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近專案需求以及學習.Net Core，所以將不太熟悉的 Linux，從下載到安裝，幫助自己加深印象以及後續回頭可以查看資料。</p>
+<span id="more"></span>
+<hr>
+<h1 id="開發環境與版本"><a href="#開發環境與版本" class="headerlink" title="開發環境與版本"></a>開發環境與版本</h1><ol>
+<li>作業系統：Windows 10</li>
+<li>虛擬軟體：VMware Workstation Pro 14</li>
+<li>作業系統：CenOS 7 (1708)</li>
+</ol>
+<h1 id="筆記"><a href="#筆記" class="headerlink" title="筆記"></a>筆記</h1><h2 id="下載"><a href="#下載" class="headerlink" title="下載"></a>下載</h2><p>前往 <a href="https://www.centos.org/download/">CentOS 網站</a> 下載 ISO 檔案。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_001.png" class="">
+
+
+<p>可依照需求選擇下載標準安裝(DVD)或是完整安裝(Everything)的 ISO 檔案。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_002.png" class="">
+
+<p>選擇下載位置。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_003.png" class="">
+
+<h2 id="建置虛擬主機"><a href="#建置虛擬主機" class="headerlink" title="建置虛擬主機"></a>建置虛擬主機</h2><p>點選【Create a New Virtual Machine】，新增虛擬主機。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_011.png" class="">
+
+<p>點選【Typical】，簡易安裝，或可自訂安裝。執行【Next】，下一步。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_012.png" class="">
+
+<p>點選【Instakker disc image file (iso)】，並選擇前面下載的 CenOS 7 ISO 檔案。執行【Next】，下一步。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_013.png" class="">
+
+<p>定義虛擬主機名稱以及安裝的存放路徑。。執行【Next】，下一步。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_014.png" class="">
+
+<p>選擇磁碟空間以及磁碟模式。。執行【Next】，下一步。<br>磁碟模式：虛擬主機單一檔案或是分割成多個檔案<br>差異在於 VM 預設的磁碟儲存方式從舊版 Store virtual disk as a single file 到新版改為 Split virtual disk into multiple files，根據說明，這種變更是為了方便把 VM 從一台拷貝到另一台，但是效能會下降。<br>所以可以依照需求，自行調整。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_015.png" class="">
+
+<p>點選 Customize Hardware…<br>調整硬體規格</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_016.png" class="">
+
+<p>選擇【Network Adaoter】，網路卡，調整【Network connection】設定為【Bridged】，直接連結實體網路。執行【Close】，關閉。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_017.png" class="">
+
+<p>執行【Finsh】，完成。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_018.png" class="">
+
+<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><p>選擇 Install CentOS 7，按下 Enter 按鈕，開始安裝 CentOS 7。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_019.png" class="">
+
+<p>開始安裝。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_020.png" class="">
+
+<p>選擇語言【中文】【繁體中文(台灣)】，點選【繼續】。<br>可以依照自行的需求，選擇安裝的項目。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_021.png" class="">
+
+<p>點選【軟體選擇】</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_022.png" class="">
+
+<p>基礎環境，選擇【KDE Plasma Workspaces】。<br>可以依照自行的需求，選擇安裝的項目。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_023.png" class="">
+
+<p>選擇完項目後，軟體選擇會出現選定的項目：KDE Plasma Workspaces。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_024.png" class="">
+
+<p>點選【安裝目的地】。預設會出現警告提示的紅字敘述”已選擇自動磁碟分割”。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_025.png" class="">
+
+<p>可以選擇要安裝的磁碟或是是否要分配磁碟。<br>可以依照自行的需求，設定項目。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_026.png" class="">
+
+<p>點選【網路與主機名稱】</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_027.png" class="">
+
+<p>開啟網路，預設是關。並確認 IP 位置是否正確。<br>若有需要額外設定固定 IP 位置，可選擇【設定】。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_028.png" class="">
+
+<p>若相關設定完成，可執行【開始安裝】</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_029.png" class="">
+
+<p>在安裝的過程中，可設定【ROOT 密碼】或是【用戶建立】</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_030.png" class="">
+
+<p>【ROOT 密碼】，此密碼是將來系統安裝完成後，登入的密碼。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_031.png" class="">
+
+<p>密碼設定完成後，若不需要建立用戶，則等待系統安裝完成即可。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_032.png" class="">
+
+<p>系統安裝完成，執行【重新開機】即可。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_033.png" class="">
+
+<p>重新開機後，請點選【LICENSE INFORMATION】。因為需要接受授權，才可以完成初始設定。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_034.png" class="">
+
+<p>將【我接受此授權協議打勾】，並執行【完成】。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_035.png" class="">
+
+<p>已接收授權，點選設定完成。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_036.png" class="">
+
+<p>按下任意鍵</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_037.png" class="">
+
+<p>輸入帳號，預設ROOT。點選下一個</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_038.png" class="">
+
+<p>輸入密碼，安裝時，設定的密碼。點選登入</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_039.png" class="">
+
+<p>登入至 CentOS 7，安裝完成。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_040.png" class="">]]></content>
+      <categories>
+        <category>技術</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>VMware</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 CentOS 7 上，安裝 MySQL 步驟說明</title>
+    <url>/2021/07/02/20210702-%E5%9C%A8-CentOS-7-%E4%B8%8A%EF%BC%8C%E5%AE%89%E8%A3%9D-MySQL-%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/</url>
+    <content><![CDATA[<img src="/2021/07/02/20210702-%E5%9C%A8-CentOS-7-%E4%B8%8A%EF%BC%8C%E5%AE%89%E8%A3%9D-MySQL-%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/article_logo.png" class="">
+
+<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>在 Linux 上安裝 MySQL。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 Linux 上安裝 MySQL，不如在 Windows 作業系統上方便。步驟也較繁雜。從下載到安裝以及過程細節步驟整理起來，幫助自己加深印象以及後續回頭可以查看資料。</p>
+<span id="more"></span>
+<hr>
+<h1 id="開發環境與版本"><a href="#開發環境與版本" class="headerlink" title="開發環境與版本"></a>開發環境與版本</h1><ol>
+<li>作業系統：Windows 10</li>
+<li>虛擬軟體：VMware Workstation Pro 14</li>
+<li>作業系統：CenOS 7 (1708)</li>
+<li>資料庫：MySQL 5.7 (mysql57-community-release-el7-11.noarch.rpm)</li>
+</ol>
+<h1 id="筆記"><a href="#筆記" class="headerlink" title="筆記"></a>筆記</h1><h2 id="開始前"><a href="#開始前" class="headerlink" title="開始前"></a>開始前</h2><p>在目前的 CentOS 7 版本中，由於預設就使用 MariaDB，所以若要安裝 MySQL，則需要先將 MariaDB 移除。<br>否則在下載 MySQL 時，會發生錯誤。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum -y remove mariadb-libs</span><br></pre></td></tr></table></figure>
+
+<h2 id="下載"><a href="#下載" class="headerlink" title="下載"></a>下載</h2><p>前往 <a href="https://dev.mysql.com/downloads/repo/yum/">MySQL 網站</a> 下載檔案。<br>此部分是透過 Yum repository 來下載。</p>
+<img src="/2021/07/02/20210702-%E5%9C%A8-CentOS-7-%E4%B8%8A%EF%BC%8C%E5%AE%89%E8%A3%9D-MySQL-%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_001.png" class="">
+
+<p>參考下圖標示的位置，使用該檔名，下載 MySQL 來源檔。</p>
+<img src="/2021/07/02/20210702-%E5%9C%A8-CentOS-7-%E4%B8%8A%EF%BC%8C%E5%AE%89%E8%A3%9D-MySQL-%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_002.png" class="">
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><p>安裝來源檔。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum localinstall mysql57-community-release-el7-11.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<p>檢查 MySQL 來源檔是否有安裝成功。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum repolist enabled | grep &quot;mysql.*-community.*&quot;</span><br></pre></td></tr></table></figure>
+
+<p>使用 yum 命令安裝。 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install mysql-community-server</span><br></pre></td></tr></table></figure>
+
+<h2 id="檢查啟動狀態"><a href="#檢查啟動狀態" class="headerlink" title="檢查啟動狀態"></a>檢查啟動狀態</h2><p>安裝完成後，確認 MySQL 服務狀態。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl status mysqld.service</span><br></pre></td></tr></table></figure>
+
+<h2 id="MySQL-服務"><a href="#MySQL-服務" class="headerlink" title="MySQL 服務"></a>MySQL 服務</h2><p>啟動 MySQL 服務指令。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl start mysqld.service</span><br></pre></td></tr></table></figure>
+
+<p>重啟服務的指令。<br>這裡，不需要立即執行，後面若有要修改參數檔，才有需要。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl restart mysqld.service</span><br></pre></td></tr></table></figure>
+
+<h2 id="初始登入密碼"><a href="#初始登入密碼" class="headerlink" title="初始登入密碼"></a>初始登入密碼</h2><p>查詢 MySQL 密碼。<br>MySQL 安裝完成後，會自動給予一組密碼，輸入已下指令，可以查看目前設定的密碼。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">grep &#x27;temporary password&#x27; /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
+
+<h2 id="登入"><a href="#登入" class="headerlink" title="登入"></a>登入</h2><p>登入 MySQL 指令；輸入上述查到的密碼。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改密碼"><a href="#修改密碼" class="headerlink" title="修改密碼"></a>修改密碼</h2><p>修改預設的密碼。<br>新版本的 MySQL，有密碼規則限制，最少八碼，已及至少一個英文字母大小寫、數字、符號。<br>這部份應該只有 Linux 版本才有，安裝 Windows 版本目前沒有這個問題。 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER USER &#x27;root&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;P@ssw0rd&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="遠端登入權限"><a href="#遠端登入權限" class="headerlink" title="遠端登入權限"></a>遠端登入權限</h2><p>建立一組遠端登入的用戶。<br>預設的帳號是無法透過遠端連置 MySQL 資料庫。所以需要建立一組可以遠端的帳號。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON *.* TO &#x27;admin&#x27;@&#x27;%&#x27; IDENTIFIED BY &#x27;P@ssw0rd&#x27; WITH GRANT OPTION;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="支援中文"><a href="#支援中文" class="headerlink" title="支援中文"></a>支援中文</h2><p>MySQL 安裝完成後，預設不支援中文，需要修改編碼。<br>修改 /etc/my.cnf 配置文件，在相關位置上（沒有則自行添加）添加編碼配置，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[mysqld] </span><br><span class="line"></span><br><span class="line">character-set-server=utf8 </span><br><span class="line"></span><br><span class="line">[client] </span><br><span class="line"></span><br><span class="line">default-character-set=utf8 </span><br><span class="line"></span><br><span class="line">[mysql] </span><br><span class="line"></span><br><span class="line">default-character-set=utf8 </span><br></pre></td></tr></table></figure>
+
+<p>Ctrl+C 離開 MySQL，重啟服務。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl restart mysqld.service</span><br></pre></td></tr></table></figure>
+
+<p>登入 MySQL，輸入密碼。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql -uroot</span><br></pre></td></tr></table></figure>
+
+<p>查詢修改後的編碼結果。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show variables like &#x27;character%&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="不限定大小寫"><a href="#不限定大小寫" class="headerlink" title="不限定大小寫"></a>不限定大小寫</h2><p>MySQL 安裝完成後，預設區分表名的大小寫。</p>
+<blockquote>
+<p>lower_case_table_names = 0 (Windows預設)<br>資料表(table)及資料庫名稱(database names)一律用小寫存在磁碟中。比較(查詢)時是區分大小寫(case sensitive)。</p>
+</blockquote>
+<blockquote>
+<p>lower_case_table_names = 1<br>資料表(table)及資料庫名稱(database names)一律用小寫存在磁碟中。比較時是不區分大小寫(case insensitive)。MySql轉換所有的資料表(table)、資料庫名稱(database names)、表別名(table aliases)為小寫來存取。所以實體檔案的名稱必須全為小寫，否則會存取不到。</p>
+</blockquote>
+<blockquote>
+<p>lower_case_table_names = 2 (Mac OS X預設)<br>資料表(table)、資料庫名稱(database names)儲存時磁碟的檔案區分大小寫。但查詢比較時MySQL將查詢轉換成小寫，不是區分大小寫。但這個設定僅適用於不區分大小寫的檔案系統。</p>
+</blockquote>
+<p>在/etc/my.cnf 中的[mysqld]後添加添加lower_case_table_names=1，重啟MYSQL服務，這時已設置成功：不區分表名的大小寫。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lower_case_table_names = 1</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="防火牆"><a href="#防火牆" class="headerlink" title="防火牆"></a>防火牆</h2><p>防火牆預設相關Port是關閉的，所以要針對 MySQL 使用的3306開啟對應的 Port。</p>
+<p>設定 Port。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">firewall-cmd --permanent --add-port=3306/tcp</span><br></pre></td></tr></table></figure>
+
+<p>重啟服務。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl restart firewalld.service</span><br></pre></td></tr></table></figure>
+
+<h2 id="開機自動啟動"><a href="#開機自動啟動" class="headerlink" title="開機自動啟動"></a>開機自動啟動</h2><p>這版安裝完成後，目前測試不需要額外設定，開機時，MySQL就會自動啟動。</p>
+]]></content>
+      <categories>
+        <category>技術</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu 20.04 安裝 .Net Core 2.2</title>
+    <url>/2021/07/10/20210710-Ubuntu-20-04-%E5%AE%89%E8%A3%9D-Net-Core-2-2/</url>
+    <content><![CDATA[<img src="/2021/07/10/20210710-Ubuntu-20-04-%E5%AE%89%E8%A3%9D-Net-Core-2-2/article_logo.png" class="">
+
+<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>在 Linux 上安裝 .Net Core 2.2。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>.Net Core 2.2 不再支援一般快速指令安裝，紀錄一下手動安裝步驟。</p>
+<span id="more"></span>
+<hr>
+<h1 id="開發環境與版本"><a href="#開發環境與版本" class="headerlink" title="開發環境與版本"></a>開發環境與版本</h1><ol>
+<li>作業系統：Windows 10</li>
+<li>虛擬軟體：VMware Workstation Pro 14</li>
+<li>作業系統：Ubuntu 20.04</li>
+</ol>
+<h1 id="筆記"><a href="#筆記" class="headerlink" title="筆記"></a>筆記</h1><h2 id="Ubuntu-20-04-環境"><a href="#Ubuntu-20-04-環境" class="headerlink" title="Ubuntu 20.04 環境"></a>Ubuntu 20.04 環境</h2><p>安裝 .NET 之前，請執行下列命令，將 Microsoft 套件簽署金鑰新增至您的受信賴起點清單，並新增套件存放庫。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb</span><br><span class="line">sudo dpkg -i packages-microsoft-prod.deb</span><br><span class="line">rm packages-microsoft-prod.deb</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="安裝-SDK"><a href="#安裝-SDK" class="headerlink" title="安裝 SDK"></a>安裝 SDK</h2><p>.Net-Core-2.2 手動安裝，直接透過下載後，再自行解壓縮檔案。</p>
+<p>下載位置 <a href="https://dotnet.microsoft.com/download/dotnet">dotnet</a></p>
+<p>選擇指定版本，並確認下載連結位置，透過 wget 指令下載檔案。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://download.visualstudio.microsoft.com/download/pr/e716faa4-345c-45a7-bd1f-860cdf422b75/fa8e57167f3bd4bf20b8b60992cf184f/aspnetcore-runtime-2.2.8-linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>建立解壓縮的目錄，並執行解壓縮到指定目錄下。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir ~/dotnet-2.2.8 &amp;&amp; tar -xvf aspnetcore-runtime-2.2.8-linux-x64.tar.gz -C ~/dotnet-2.2.8</span><br></pre></td></tr></table></figure>
+
+<p>建立軟連結：軟連結（符號連結）則是靠著絕對路徑或相對路徑來指向目標檔案的連結檔，若要使用 ln 指令建立軟連結，可以加上 -s 參數：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo ln -s ~/dotnet-2.2.8/dotnet /usr/bin/dotnet</span><br></pre></td></tr></table></figure>
+
+
+<p>完整指令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://download.visualstudio.microsoft.com/download/pr/e716faa4-345c-45a7-bd1f-860cdf422b75/fa8e57167f3bd4bf20b8b60992cf184f/aspnetcore-runtime-2.2.8-linux-x64.tar.gz</span><br><span class="line"></span><br><span class="line">mkdir ~/dotnet-2.2.8 &amp;&amp; tar -xvf aspnetcore-runtime-2.2.8-linux-x64.tar.gz -C ~/dotnet-2.2.8</span><br><span class="line"></span><br><span class="line">sudo ln -s ~/dotnet-2.2.8/dotnet /usr/bin/dotnet</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="檢查安裝版本"><a href="#檢查安裝版本" class="headerlink" title="檢查安裝版本"></a>檢查安裝版本</h2><p>一般檢查.Net Core 版本，指令為 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dotnet --version</span><br></pre></td></tr></table></figure>
+<p>但在 Ubuntu 20.04 的指令得下已下指令才可以查得版本資訊</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dotnet --info</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="驗證"><a href="#驗證" class="headerlink" title="驗證"></a>驗證</h2><p>重開機後，重新下檢查版本指令，確認是否可以查到.Net Core 安裝的版本。<br>如果查得到，表示安裝完成，沒有問題。<br>若查不到，表示建立軟連結的部分有問題，需要重新確認。</p>
+<h1 id="參考文件"><a href="#參考文件" class="headerlink" title="參考文件"></a>參考文件</h1><p><a href="https://docs.microsoft.com/zh-tw/dotnet/core/install/linux-ubuntu">在 Ubuntu 上安裝 .NET SDK 或 .NET 執行時間</a></p>
+]]></content>
+      <categories>
+        <category>技術</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Ubuntu</tag>
+        <tag>.Net Core</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Linux 上使用 Nginx 裝載 ASP.NET Core</title>
+    <url>/2021/07/12/20210712-%E5%9C%A8-Linux-%E4%B8%8A%E4%BD%BF%E7%94%A8-Nginx-%E8%A3%9D%E8%BC%89-ASP-NET-Core/</url>
+    <content><![CDATA[<img src="/2021/07/12/20210712-%E5%9C%A8-Linux-%E4%B8%8A%E4%BD%BF%E7%94%A8-Nginx-%E8%A3%9D%E8%BC%89-ASP-NET-Core/article_logo.jpg" class="">
+
+<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>在 Linux 部屬 .Net Core 網站。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>因專案需求，系統需改在 Linux 上執行。針對 ASP.NET Core 網站說明如何部屬在 Linux 平台上執行。<br>會針對下幾點作說明；</p>
+<ol>
+<li>安裝 Nginx</li>
+<li>設定 Nginx</li>
+<li>設定服務<br>網站可以執行後，如何設定開機可自動執行網站</li>
+</ol>
+<span id="more"></span>
+<hr>
+<h1 id="開發環境與版本"><a href="#開發環境與版本" class="headerlink" title="開發環境與版本"></a>開發環境與版本</h1><ol>
+<li>作業系統：Windows 10</li>
+<li>虛擬軟體：VMware Workstation Pro 14</li>
+<li>作業系統：Ubuntu 20.04</li>
+</ol>
+<h1 id="筆記"><a href="#筆記" class="headerlink" title="筆記"></a>筆記</h1><h2 id="Nginx-安裝"><a href="#Nginx-安裝" class="headerlink" title="Nginx 安裝"></a>Nginx 安裝</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure>
+
+
+<p>安裝完成後，執行 nginx。<br>這邊微軟文件和Nginx教學文件，都有提到要額外執行服務啟用。但目前實際測試安裝完成後，測試是可以直接正常看到nginx頁面。</p>
+<p><a href="https://docs.microsoft.com/zh-tw/aspnet/core/host-and-deploy/linux-nginx">微軟</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo service nginx start</span><br></pre></td></tr></table></figure>
+<p><a href="https://docs.microsoft.com/zh-tw/aspnet/core/host-and-deploy/linux-nginx">Nginx 網站</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl start nginx</span><br></pre></td></tr></table></figure>
+
+<h2 id="設定-Nginx"><a href="#設定-Nginx" class="headerlink" title="設定 Nginx"></a>設定 Nginx</h2><p>若要將 Nginx 設定為反向 proxy，以將 HTTP 要求轉送至 ASP.NET Core 應用程式，請修改 /etc/nginx/sites-available/default 。 在文字編輯器中開啟它，並將內容取代為下列程式碼片段：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen        80;</span><br><span class="line">    server_name   example.com *.example.com;</span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass         http://127.0.0.1:5000;</span><br><span class="line">        proxy_http_version 1.1;</span><br><span class="line">        proxy_set_header   Upgrade $http_upgrade;</span><br><span class="line">        proxy_set_header   Connection keep-alive;</span><br><span class="line">        proxy_set_header   Host $host;</span><br><span class="line">        proxy_cache_bypass $http_upgrade;</span><br><span class="line">        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header   X-Forwarded-Proto $scheme;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>改檔案前，如果沒有權限，執行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo nautilus</span><br></pre></td></tr></table></figure>
+
+<h2 id="監視應用程式"><a href="#監視應用程式" class="headerlink" title="監視應用程式"></a>監視應用程式</h2><p>伺服器會設定為將對執行的要求轉寄至在 http://<serveraddress>:80 上執行的 ASP.NET Core 應用 Kestrel 程式 <a href="http://127.0.0.1:5000/">http://127.0.0.1:5000</a> 。 但是，不會設定 Nginx 來管理 Kestrel 進程。 systemd 可以用來建立服務檔案，以啟動並監視基礎 web 應用程式。 systemd 是 init 系統，提供許多強大的功能來啟動、停止及管理進程。</p>
+<h3 id="建立服務檔"><a href="#建立服務檔" class="headerlink" title="建立服務檔"></a>建立服務檔</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo nano /etc/systemd/system/kestrel-appname.service</span><br></pre></td></tr></table></figure>
+<p>kestrel-appname 改成自己想要的名稱</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">#描述內容</span><br><span class="line">Description=Example .NET Web API App running on Ubuntu</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">#執行目錄</span><br><span class="line">WorkingDirectory=/var/www/helloapp</span><br><span class="line"></span><br><span class="line">#執行目錄下的dll</span><br><span class="line">ExecStart=/usr/bin/dotnet /var/www/helloapp/helloapp.dll</span><br><span class="line"></span><br><span class="line">Restart=always</span><br><span class="line"></span><br><span class="line"># Restart service after 10 seconds if the dotnet service crashes:</span><br><span class="line">RestartSec=10</span><br><span class="line"></span><br><span class="line">KillSignal=SIGINT</span><br><span class="line"></span><br><span class="line">#設置syslog中log的程序名稱</span><br><span class="line">SyslogIdentifier=dotnet-example</span><br><span class="line"></span><br><span class="line">User=www-data</span><br><span class="line"></span><br><span class="line">Environment=ASPNETCORE_ENVIRONMENT=Production</span><br><span class="line"></span><br><span class="line">Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>啟用服務(服務配置為在系統啟動時啟動)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl enable kestrel-appname.service</span><br></pre></td></tr></table></figure>
+<p>若啟動時，不要啟動服務</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl disable kestrel-appname.service</span><br></pre></td></tr></table></figure>
+
+<p>執行服務</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl start kestrel-appname.service</span><br></pre></td></tr></table></figure>
+<p>查看服務狀態</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl start kestrel-appname.service</span><br></pre></td></tr></table></figure>
+
+<p>如何重啟服務</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart kestrel-appname.service</span><br></pre></td></tr></table></figure>
+
+<p>如何重新加載服務<br>強制服務重新加載其配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl reload kestrel-appname.service</span><br></pre></td></tr></table></figure>
+
+<p>如何停用服務</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl stop kestrel-appname.service</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="檢視記錄"><a href="#檢視記錄" class="headerlink" title="檢視記錄"></a>檢視記錄</h3><p>由於使用的 web 應用程式 Kestrel 是使用管理 systemd ，因此所有事件和進程都會記錄到集中式日誌中。 不過，此日誌包含 systemd 管理的所有服務和處理程序的所有項目。 若要檢視 kestrel-helloapp.service 的特定項目，請使用下列命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo journalctl -fu kestrel-appname.service</span><br></pre></td></tr></table></figure>
+
+<h2 id="權限"><a href="#權限" class="headerlink" title="權限"></a>權限</h2><p>在執行服務時，遇到以下幾個錯誤訊息時，表示執行目錄沒有權限。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Failed at step CHDIR .............: No such file or directory from the file</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">............. Permission denied</span><br></pre></td></tr></table></figure>
+
+<p>解決方式：</p>
+<p>chmod 777 專案目錄，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo chmod 777 /var/www/helloapp</span><br></pre></td></tr></table></figure>
+
+<p>755代表用戶對該文件擁有讀，寫，執行的權限，同組其他人員擁有執行和讀的權限，沒有寫的權限，其他用戶的權限和同組人員權限一樣。<br>777代表，user,group ,others ,都有讀寫和可執行權限。</p>
+<h2 id="413-Request-Entity-Too-Large"><a href="#413-Request-Entity-Too-Large" class="headerlink" title="413 Request Entity Too Large"></a>413 Request Entity Too Large</h2><p>Nginx 出現 413 Request Entity Too Large 主要是post的資料量過大，所出現的錯誤。如果要讓解決這個問題必需把post的上限調高。 </p>
+<p>解決方法如下：</p>
+<p>修改 /etc/nginx/nginx.conf 檔案，在 http 段落 增加 client_max_body_size 大小。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http &#123;</span><br><span class="line"></span><br><span class="line">    client_max_body_size 10M;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>重啟 Nginx</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">service nginx reload</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="參考文件"><a href="#參考文件" class="headerlink" title="參考文件"></a>參考文件</h1><p><a href="https://docs.microsoft.com/zh-tw/aspnet/core/host-and-deploy/linux-nginx?view=aspnetcore-5.0">在 Linux 上使用 Nginx 裝載 ASP.NET Core</a></p>
+]]></content>
+      <categories>
+        <category>技術</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Ubuntu</tag>
+        <tag>.Net Core</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Ubuntu 安裝 Mosquitto MQTT Broker</title>
+    <url>/2021/07/18/20210718-%E5%9C%A8-Ubuntu-%E5%AE%89%E8%A3%9D-Mosquitto-MQTT-Broker/</url>
+    <content><![CDATA[<img src="/2021/07/18/20210718-%E5%9C%A8-Ubuntu-%E5%AE%89%E8%A3%9D-Mosquitto-MQTT-Broker/article_logo.jpg" class="">
+
+<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>說明在 Ubuntu 上 如何安裝 Mosquitto MQTT Broker。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>因專案需求，系統需改在 Linux 上執行。針對 MQTT 功能的部分，說明在 Ubuntu 上 如何安裝 Mosquitto MQTT Broker。</p>
+<span id="more"></span>
+<hr>
+<h2 id="開發環境與版本"><a href="#開發環境與版本" class="headerlink" title="開發環境與版本"></a>開發環境與版本</h2><ol>
+<li>作業系統：Windows 10</li>
+<li>虛擬軟體：VMware Workstation Pro 14</li>
+<li>作業系統：Ubuntu 20.04</li>
+</ol>
+<h1 id="筆記"><a href="#筆記" class="headerlink" title="筆記"></a>筆記</h1><h2 id="Mosquitto-MQTT-安裝"><a href="#Mosquitto-MQTT-安裝" class="headerlink" title="Mosquitto MQTT 安裝"></a>Mosquitto MQTT 安裝</h2><p>針對 Ubuntu 的部分，<a href="https://mosquitto.org/download/">文章</a> 內文有提到，可透過方式下載安裝。</p>
+<blockquote>
+<p>Mosquitto is available in the Ubuntu repositories so you can install as with any other package.</p>
+</blockquote>
+<h3 id="安裝步驟"><a href="#安裝步驟" class="headerlink" title="安裝步驟"></a>安裝步驟</h3><ol>
+<li>開啟終端機</li>
+<li>取得遠端更新伺服器的套件檔案清單<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure></li>
+<li>安裝 Mosquitto MQTT Broker<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install -y mosquitto</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="驗證"><a href="#驗證" class="headerlink" title="驗證"></a>驗證</h2><p>透過 MQTTBox 工具進行驗證</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>Mosquitto MQTT 安裝完成後，預設就會以服務方式自動執行，不需要額外設定開機啟動。<br>防火牆部分，Ubuntu 20.04 安裝完成後，預設是關閉的。所以不需要額外啟用。<br>如驗證時，請先確認防火牆是否有開啟 Port：1883。</p>
+]]></content>
+      <categories>
+        <category>技術</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Ubuntu</tag>
+        <tag>Mqtt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 VM 上安裝 macOS Monterey</title>
+    <url>/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/</url>
+    <content><![CDATA[<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/article_logo.png" class="">
+
+<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>說明在虛擬機上，安裝 macOS Monterey 的步驟。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在使用 IONIC 開發 APP應用，其中 IOS 版本，得需要 Mac OS 才能編譯、發佈、上架到APP Stroe，因為資源有限，所以利用虛擬機安裝 Mac OS 的開發環境。</p>
+<span id="more"></span>
+<hr>
+<h2 id="開發環境與版本"><a href="#開發環境與版本" class="headerlink" title="開發環境與版本"></a>開發環境與版本</h2><ol>
+<li>作業系統：Windows 10</li>
+<li>虛擬軟體：VMware Workstation Pro 14</li>
+<li>作業系統：macOS Monterey</li>
+</ol>
+<h1 id="筆記"><a href="#筆記" class="headerlink" title="筆記"></a>筆記</h1><h2 id="安裝-macOS-Monterey"><a href="#安裝-macOS-Monterey" class="headerlink" title="安裝 macOS Monterey"></a>安裝 macOS Monterey</h2><ol>
+<li>選擇語系。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_001.png" class=""></li>
+<li>選擇【磁碟工具程式】，並點選【繼續】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_002.png" class=""></li>
+<li>由於磁碟尚未初始化，先由左列選擇要清除的磁碟，並點選【清除】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_003.png" class=""></li>
+<li>更改名稱，並點選【清除】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_004.png" class=""></li>
+<li>清除和製作完成後，點選【完成】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_005.png" class=""></li>
+<li>左上角點選【磁碟工具程式】，並結束【磁碟工具程式】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_006.png" class=""></li>
+<li>選擇【安裝 macOSA Monerey】，並點選【繼續】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_007.png" class=""></li>
+<li>點選【繼續】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_008.png" class=""></li>
+<li>點選【同意】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_009.png" class=""></li>
+<li>點選【同意】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_010.png" class=""></li>
+<li>選擇要安裝的【磁碟】，點選【繼續】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_011.png" class=""></li>
+<li>等待安裝中。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_012.png" class=""></li>
+<li>安裝完成後，選擇國家或地區，點選【繼續】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_013.png" class=""></li>
+<li>點選【繼續】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_014.png" class=""></li>
+<li>點選【稍後再說】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_015.png" class=""></li>
+<li>點選【繼續】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_016.png" class=""></li>
+<li>點選【稍後再說】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_017.png" class=""></li>
+<li>如果有 Apple ID，可使用Apple ID 登入。這邊選擇，【稍後設定】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_018.png" class=""></li>
+<li>點選【略過】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_019.png" class=""></li>
+<li>點選【同意】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_020.png" class=""></li>
+<li>點選【同意】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_021.png" class=""></li>
+<li>建立電腦帳號，並點選【繼續】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_022.png" class=""></li>
+<li>點選【繼續】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_023.png" class=""></li>
+<li>點選【不使用】。因為是虛擬機開發，用不到定位，要選擇使用，也可以。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_024.png" class=""></li>
+<li>選擇【時區】，點選【繼續】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_025.png" class=""></li>
+<li>點選【繼續】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_026.png" class=""></li>
+<li>點選【稍後設定】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_027.png" class=""></li>
+<li>選擇【外觀】，點選【繼續】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_028.png" class=""></li>
+</ol>
+<h2 id="安裝-VMware-Tools"><a href="#安裝-VMware-Tools" class="headerlink" title="安裝 VMware Tools"></a>安裝 VMware Tools</h2><ol>
+<li>選擇工具列【VM】 =&gt; 【Install VMware Tools…】<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_029.png" class=""></li>
+<li>選擇【安裝 VMware Tools】<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_030.png" class=""></li>
+<li>點選【繼續】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_031.png" class=""></li>
+<li>點選【安裝】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_032.png" class=""></li>
+<li>輸入對應的帳號密碼，並點選【安裝軟體】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_033.png" class=""></li>
+<li>點選【好】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_034.png" class=""></li>
+<li>點選【打開安全性偏好設定】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_035.png" class=""></li>
+<li>左下角，點選鎖頭圖示，以進行修改。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_036.png" class=""></li>
+<li>輸入對應的帳號密碼，並點選【解鎖】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_037.png" class=""></li>
+<li>點選【允許】。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_038.png" class=""></li>
+<li>點選【稍後再說】，最後再選擇關機，這一步先不關機。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_039.png" class=""></li>
+<li>關閉視窗。<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_040.png" class=""></li>
+<li>安裝完成，點選【重新開機】<img src="/2021/12/08/20211208-%E5%9C%A8-VM-%E4%B8%8A%E5%AE%89%E8%A3%9D-macOS-Monterey/Image_041.png" class=""></li>
+</ol>
+]]></content>
+      <categories>
+        <category>技術</category>
+      </categories>
+      <tags>
+        <tag>macOS</tag>
+      </tags>
+  </entry>
+</search>

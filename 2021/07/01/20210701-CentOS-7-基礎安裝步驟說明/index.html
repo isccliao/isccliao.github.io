@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"isccliao.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="目的安裝 Centos。 前言最近專案需求以及學習.Net Core，所以將不太熟悉的 Linux，從下載到安裝，幫助自己加深印象以及後續回頭可以查看資料。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS 7 基礎安裝步驟說明">
+<meta property="og:url" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/index.html">
+<meta property="og:site_name" content="技術學無止盡">
+<meta property="og:description" content="目的安裝 Centos。 前言最近專案需求以及學習.Net Core，所以將不太熟悉的 Linux，從下載到安裝，幫助自己加深印象以及後續回頭可以查看資料。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/article_logo.jpg">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_001.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_002.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_003.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_011.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_012.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_013.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_014.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_015.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_016.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_017.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_018.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_019.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_020.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_021.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_022.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_023.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_024.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_025.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_026.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_027.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_028.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_029.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_030.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_031.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_032.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_033.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_034.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_035.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_036.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_037.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_038.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_039.png">
+<meta property="og:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_040.png">
+<meta property="article:published_time" content="2021-06-30T18:44:50.000Z">
+<meta property="article:modified_time" content="2021-12-08T14:27:49.950Z">
+<meta property="article:author" content="Chia Ching Liao">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="VMware">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/article_logo.jpg">
+
+
+<link rel="canonical" href="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/","path":"2021/07/01/20210701-CentOS-7-基礎安裝步驟說明/","title":"CentOS 7 基礎安裝步驟說明"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>CentOS 7 基礎安裝步驟說明 | 技術學無止盡</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">技術學無止盡</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">技術文件</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>網站地圖</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E7%9A%84"><span class="nav-number">1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">2.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83%E8%88%87%E7%89%88%E6%9C%AC"><span class="nav-number">3.</span> <span class="nav-text">開發環境與版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%86%E8%A8%98"><span class="nav-number">4.</span> <span class="nav-text">筆記</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BC%89"><span class="nav-number">4.1.</span> <span class="nav-text">下載</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%BD%AE%E8%99%9B%E6%93%AC%E4%B8%BB%E6%A9%9F"><span class="nav-number">4.2.</span> <span class="nav-text">建置虛擬主機</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D"><span class="nav-number">4.3.</span> <span class="nav-text">安裝</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Chia Ching Liao"
+      src="https://ppt.cc/fGb3gx@.png">
+  <p class="site-author-name" itemprop="name">Chia Ching Liao</p>
+  <div class="site-description" itemprop="description">隨筆紀錄</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://isccliao.github.io/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://ppt.cc/fGb3gx@.png">
+      <meta itemprop="name" content="Chia Ching Liao">
+      <meta itemprop="description" content="隨筆紀錄">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技術學無止盡">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CentOS 7 基礎安裝步驟說明
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2021-07-01 02:44:50" itemprop="dateCreated datePublished" datetime="2021-07-01T02:44:50+08:00">2021-07-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021-12-08 22:27:49" itemprop="dateModified" datetime="2021-12-08T22:27:49+08:00">2021-12-08</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E8%A1%93/" itemprop="url" rel="index"><span itemprop="name">技術</span></a>
+        </span>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="文章字數">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">文章字數：</span>
+      <span>1.3k</span>
+    </span>
+    <span class="post-meta-item" title="所需閱讀時間">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+      <span>1 分鐘</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/article_logo.jpg" class="">
+
+<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>安裝 Centos。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近專案需求以及學習.Net Core，所以將不太熟悉的 Linux，從下載到安裝，幫助自己加深印象以及後續回頭可以查看資料。</p>
+<span id="more"></span>
+<hr>
+<h1 id="開發環境與版本"><a href="#開發環境與版本" class="headerlink" title="開發環境與版本"></a>開發環境與版本</h1><ol>
+<li>作業系統：Windows 10</li>
+<li>虛擬軟體：VMware Workstation Pro 14</li>
+<li>作業系統：CenOS 7 (1708)</li>
+</ol>
+<h1 id="筆記"><a href="#筆記" class="headerlink" title="筆記"></a>筆記</h1><h2 id="下載"><a href="#下載" class="headerlink" title="下載"></a>下載</h2><p>前往 <a target="_blank" rel="noopener" href="https://www.centos.org/download/">CentOS 網站</a> 下載 ISO 檔案。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_001.png" class="">
+
+
+<p>可依照需求選擇下載標準安裝(DVD)或是完整安裝(Everything)的 ISO 檔案。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_002.png" class="">
+
+<p>選擇下載位置。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_003.png" class="">
+
+<h2 id="建置虛擬主機"><a href="#建置虛擬主機" class="headerlink" title="建置虛擬主機"></a>建置虛擬主機</h2><p>點選【Create a New Virtual Machine】，新增虛擬主機。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_011.png" class="">
+
+<p>點選【Typical】，簡易安裝，或可自訂安裝。執行【Next】，下一步。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_012.png" class="">
+
+<p>點選【Instakker disc image file (iso)】，並選擇前面下載的 CenOS 7 ISO 檔案。執行【Next】，下一步。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_013.png" class="">
+
+<p>定義虛擬主機名稱以及安裝的存放路徑。。執行【Next】，下一步。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_014.png" class="">
+
+<p>選擇磁碟空間以及磁碟模式。。執行【Next】，下一步。<br>磁碟模式：虛擬主機單一檔案或是分割成多個檔案<br>差異在於 VM 預設的磁碟儲存方式從舊版 Store virtual disk as a single file 到新版改為 Split virtual disk into multiple files，根據說明，這種變更是為了方便把 VM 從一台拷貝到另一台，但是效能會下降。<br>所以可以依照需求，自行調整。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_015.png" class="">
+
+<p>點選 Customize Hardware…<br>調整硬體規格</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_016.png" class="">
+
+<p>選擇【Network Adaoter】，網路卡，調整【Network connection】設定為【Bridged】，直接連結實體網路。執行【Close】，關閉。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_017.png" class="">
+
+<p>執行【Finsh】，完成。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_018.png" class="">
+
+<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><p>選擇 Install CentOS 7，按下 Enter 按鈕，開始安裝 CentOS 7。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_019.png" class="">
+
+<p>開始安裝。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_020.png" class="">
+
+<p>選擇語言【中文】【繁體中文(台灣)】，點選【繼續】。<br>可以依照自行的需求，選擇安裝的項目。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_021.png" class="">
+
+<p>點選【軟體選擇】</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_022.png" class="">
+
+<p>基礎環境，選擇【KDE Plasma Workspaces】。<br>可以依照自行的需求，選擇安裝的項目。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_023.png" class="">
+
+<p>選擇完項目後，軟體選擇會出現選定的項目：KDE Plasma Workspaces。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_024.png" class="">
+
+<p>點選【安裝目的地】。預設會出現警告提示的紅字敘述”已選擇自動磁碟分割”。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_025.png" class="">
+
+<p>可以選擇要安裝的磁碟或是是否要分配磁碟。<br>可以依照自行的需求，設定項目。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_026.png" class="">
+
+<p>點選【網路與主機名稱】</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_027.png" class="">
+
+<p>開啟網路，預設是關。並確認 IP 位置是否正確。<br>若有需要額外設定固定 IP 位置，可選擇【設定】。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_028.png" class="">
+
+<p>若相關設定完成，可執行【開始安裝】</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_029.png" class="">
+
+<p>在安裝的過程中，可設定【ROOT 密碼】或是【用戶建立】</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_030.png" class="">
+
+<p>【ROOT 密碼】，此密碼是將來系統安裝完成後，登入的密碼。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_031.png" class="">
+
+<p>密碼設定完成後，若不需要建立用戶，則等待系統安裝完成即可。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_032.png" class="">
+
+<p>系統安裝完成，執行【重新開機】即可。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_033.png" class="">
+
+<p>重新開機後，請點選【LICENSE INFORMATION】。因為需要接受授權，才可以完成初始設定。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_034.png" class="">
+
+<p>將【我接受此授權協議打勾】，並執行【完成】。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_035.png" class="">
+
+<p>已接收授權，點選設定完成。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_036.png" class="">
+
+<p>按下任意鍵</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_037.png" class="">
+
+<p>輸入帳號，預設ROOT。點選下一個</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_038.png" class="">
+
+<p>輸入密碼，安裝時，設定的密碼。點選登入</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_039.png" class="">
+
+<p>登入至 CentOS 7，安裝完成。</p>
+<img src="/2021/07/01/20210701-CentOS-7-%E5%9F%BA%E7%A4%8E%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/Image_040.png" class="">
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/VMware/" rel="tag"># VMware</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/07/02/20210702-%E5%9C%A8-CentOS-7-%E4%B8%8A%EF%BC%8C%E5%AE%89%E8%A3%9D-MySQL-%E6%AD%A5%E9%A9%9F%E8%AA%AA%E6%98%8E/" rel="next" title="在 CentOS 7 上，安裝 MySQL 步驟說明">
+                  在 CentOS 7 上，安裝 MySQL 步驟說明 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chia Ching Liao</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>總字數：</span>
+    <span title="總字數">9k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>所需總閱讀時間 &asymp;</span>
+    <span title="所需總閱讀時間">8 分鐘</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
